@@ -16,7 +16,7 @@
 
             <!-- composer require illuminate/html -->
 
-            {!! Form::open(['route' => 'products.store']) !!}
+            {!! Form::open(['route' => 'admin.products.store']) !!}
 
             <div class="form-group">
                 {!! Form::label('name', 'Name:') !!}

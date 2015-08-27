@@ -19,3 +19,11 @@ $factory->define(CodeCommerce\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+/*
+ * tinker >>>
+ * factory('CodeCommerce\User')->make();
+ * factory('CodeCommerce\User', 10)->make();
+ * factory('CodeCommerce\User')->create();
+ * factory('CodeCommerce\User', 10)->create();
+ * */

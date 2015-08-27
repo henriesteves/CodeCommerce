@@ -16,7 +16,7 @@
 
             <!-- composer require illuminate/html -->
 
-            {!! Form::open(['route' => ['products.update', $product->id], 'method' => 'put']) !!}
+            {!! Form::open(['route' => ['admin.products.update', $product->id], 'method' => 'put']) !!}
 
             <div class="form-group">
                 {!! Form::label('name', 'Name:') !!}

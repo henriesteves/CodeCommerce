@@ -10,11 +10,11 @@ use CodeCommerce\Http\Controllers\Controller;
 
 class CategoriesController extends Controller
 {
-    private $categoryModel;
+    private $categories;
 
-    public function __construct(Category $categoryModel)
+    public function __construct(Category $category)
     {
-        $this->categoryModel = $categoryModel;
+        $this->categories = $category;
     }
 
     /**
@@ -24,9 +24,9 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = $this->categoryModel->all();
+        $categories = $this->categories->all();
 
-        return view('categories.index', compact('categories'));
+        return view('categories', compact('categories'));
     }
 
     /**
@@ -36,7 +36,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        //
     }
 
     /**
@@ -45,16 +45,9 @@ class CategoriesController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Requests\CategoryRequest $request)
+    public function store(Request $request)
     {
-        $input = $request->all();
-
-        $category = $this->categoryModel->fill($input);
-
-        $category->save();
-
-        //return redirect('categories');
-        return redirect()->route('categories');
+        //
     }
 
     /**
@@ -76,9 +69,7 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        $category = $this->categoryModel->find($id);
-
-        return view('categories.edit', compact('category'));
+        //
     }
 
     /**
@@ -88,11 +79,9 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Requests\CategoryRequest  $request, $id)
+    public function update(Request $request, $id)
     {
-        $this->categoryModel->find($id)->update($request->all());
-
-        return redirect()->route('categories');
+        //
     }
 
     /**
@@ -103,8 +92,6 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        $this->categoryModel->find($id)->delete();
-
-        return redirect()->route('categories');
+        //
     }
 }

@@ -10,11 +10,11 @@ use CodeCommerce\Http\Controllers\Controller;
 
 class ProductsController extends Controller
 {
-    private $productModel;
+    private $products;
 
-    public function __construct(Product $productModel)
+    public function __construct(Product $product)
     {
-        $this->productModel = $productModel;
+        $this->products = $product;
     }
 
     /**
@@ -24,9 +24,9 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = $this->productModel->all();
+        $products = $this->products->all();
 
-        return view('products.index', compact('products'));
+        return view('products', compact('products'));
     }
 
     /**
@@ -36,38 +36,24 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request $request
+     * @param  Request  $request
      * @return Response
      */
-    public function store(Requests\ProductRequest $request)
+    public function store(Request $request)
     {
-        $input = $request->all();
-
-        $input['featured'] = isset($input['featured']) ? 1 : 0;
-
-        $input['recommend'] = isset($input['recommend']) ? 1 : 0;
-
-        //dd($input);
-
-        $product = $this->productModel->fill($input);
-
-        //dd($product);
-
-        $product->save();
-
-        return redirect()->route('products');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -78,48 +64,34 @@ class ProductsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
     {
-        $product = $this->productModel->find($id);
-
-        //dd($product);
-
-        return view('products.edit', compact('product'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request $request
-     * @param  int $id
+     * @param  Request  $request
+     * @param  int  $id
      * @return Response
      */
-    public function update(Requests\ProductRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $input = $request->all();
-
-        $input['featured'] = isset($input['featured']) ? 1 : 0;
-
-        $input['recommend'] = isset($input['recommend']) ? 1 : 0;
-
-        $this->productModel->find($id)->update($input);
-
-        return redirect()->route('products');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)
     {
-        $this->productModel->find($id)->delete();
-
-        return redirect()->route('products');
+        //
     }
 }
