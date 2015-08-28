@@ -20,6 +20,23 @@ $factory->define(CodeCommerce\User::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(CodeCommerce\Category::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word(),
+        'description' => $faker->sentence()
+    ];
+});
+
+$factory->define(CodeCommerce\Product::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word(),
+        'description' => $faker->sentence(),
+        'price' => $faker->randomNumber(2),
+        'featured' => $faker->boolean(),
+        'recommend' => $faker->boolean()
+    ];
+});
+
 /*
  * tinker >>>
  * factory('CodeCommerce\User')->make();
