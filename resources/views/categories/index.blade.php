@@ -32,6 +32,8 @@
 
             </table>
 
+            {!! $categories->render() !!}
+
         </div>
     </div>
 @endsection

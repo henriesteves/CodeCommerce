@@ -16,6 +16,7 @@
                     <th>Name</th>
                     <th>Description</th>
                     <th>Price</th>
+                    <th>Category</th>
                     <th>Featured</th>
                     <th>Recommend</th>
                     <th>Action</th>
@@ -27,6 +28,7 @@
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->description }}</td>
                         <td>{{ $product->price }}</td>
+                        <td>{{ $product->category->name }}</td>
                         <td>@if ($product->featured == '1') Yes @else No @endif</td>
                         <td>@if ($product->recommend == '1') Yes @else No @endif</td>
                         <td>
@@ -37,6 +39,8 @@
                 @endforeach
 
             </table>
+
+            {!! $products->render() !!}
 
         </div>
     </div>
