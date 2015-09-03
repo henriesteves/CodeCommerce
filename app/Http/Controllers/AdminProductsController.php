@@ -127,6 +127,18 @@ class AdminProductsController extends Controller
      */
     public function destroy($id)
     {
+
+        if ($this->productModel->find($id)->images->count()) {
+
+            $images = $this->productModel->find($id)->images;
+
+            foreach ($images as $image) {
+                if (file_exists(public_path() . '/uploads/' . $image->id . '.' . $image->extension)) {
+                    Storage::disk('public_local')->delete($image->id . '.' . $image->extension);
+                }
+            }
+        }
+
         $this->productModel->find($id)->delete();
 
         return redirect()->route('admin.products');
@@ -156,7 +168,7 @@ class AdminProductsController extends Controller
 
         Storage::disk('public_local')->put($image->id . '.' . $extension, File::get($file));
 
-        return redirect()->route('admin.products.images', ['id' =>$id]);
+        return redirect()->route('admin.products.images', ['id' => $id]);
     }
 
     public function destroyImage(ProductImage $productImage, $id)
