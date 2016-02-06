@@ -39,6 +39,11 @@
             </div>
 
             <div class="form-group">
+                {!! Form::label('tags', 'Tags:') !!}
+                {!! Form::textarea('tags', null, ['class' => 'form-control', 'rows'=>'2']) !!}
+            </div>
+
+            <div class="form-group">
                 {!! Form::label('featured', 'Featured:') !!}
                 {!! Form::checkbox('featured', null) !!}
             </div>

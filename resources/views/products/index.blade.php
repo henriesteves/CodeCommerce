@@ -17,6 +17,7 @@
                     <th>Description</th>
                     <th>Price</th>,
                     <th>Images</th>
+                    <th>Tags</th>
                     <th>Category</th>
                     <th>Featured</th>
                     <th>Recommend</th>
@@ -30,6 +31,7 @@
                         <td>{{ $product->description }}</td>
                         <td>{{ $product->price }}</td>
                         <td>{{ $product->images->count() }}</td>
+                        <td>{{ $product->tags->count() }}</td>
                         <td>{{ $product->category->name }}</td>
                         <td>@if ($product->featured == '1') Yes @else No @endif</td>
                         <td>@if ($product->recommend == '1') Yes @else No @endif</td>
