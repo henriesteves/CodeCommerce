@@ -11,84 +11,34 @@ use CodeCommerce\Http\Controllers\Controller;
 
 class StoreController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private $category;
+
+    public function __construct(Category $category, Product $product)
+    {
+        $this->category = $category;
+        $this->product = $product;
+    }
+
     public function index()
     {
         //$pFeatured = Product::where('featured', '=', 1)->get();
-        $pFeatured = Product::featured()->get();
+        $pFeatured = $this->product->featured()->get();
 
-        $categories = Category::all();
+        $pRecommend = $this->product->recommend()->get();
 
-        return view('store.index', compact('categories', 'pFeatured'));
+        $categories = $this->category->all();
+
+        return view('store.index', compact('categories', 'pFeatured', 'pRecommend'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function category($id)
     {
-        //
-    }
+        $categories = $this->category->all();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $category = $this->category->find($id);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $products = $category->products;
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('store.category', compact('categories', 'products'));
     }
 }
