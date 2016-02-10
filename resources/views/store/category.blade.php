@@ -22,7 +22,7 @@
                                 <img src="{{ url('images/no-img.jpg') }}" alt="" width="200"/>
                             @endif
 
-                            <h2>R$ {{ number_format($product->price,2,",",".") }}</h2>
+                            <h2>R$ {{ number_format($product->price, 2, ", ", ".") }}</h2>
                             <p>{{ $product->name }}</p>
                             <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-crosshairs"></i>Maisdetalhes</a>
                             <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Adicionarno carrinho</a>
@@ -39,6 +39,12 @@
                 </div>
             </div>
         @endforeach
+
+        <div class="row">
+            <div class="col-sm-12">
+                {!! $products->render() !!}
+            </div>
+        </div>
 
     </div>
 

@@ -37,4 +37,8 @@ elixir(function(mix) {
 
     ], 'public/js/all.js');
 
+    mix.version(['css/all.css', 'js/all.js']);
+
+    mix.copy('resources/assets/fonts', 'public/build/fonts');
+
 });

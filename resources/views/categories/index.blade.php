@@ -15,6 +15,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Description</th>
+                    <th>Products</th>
                     <th>Action</th>
                 </tr>
 
@@ -23,6 +24,7 @@
                         <td>{{ $category->id }}</td>
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->description }}</td>
+                        <td>{{ $category->products->count() }}</td>
                         <td>
                             <a href="{{ route('admin.categories.edit', ['id' => $category->id]) }}">Edit</a> |
                             <a href="{{ route('admin.categories.destroy', ['id' => $category->id]) }}">Delete</a>

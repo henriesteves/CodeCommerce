@@ -35,9 +35,11 @@ class StoreController extends Controller
     {
         $categories = $this->category->all();
 
-        $category = $this->category->find($id);
+        //$category = $this->category->find($id);
 
-        $products = $category->products;
+        //$products = $category->products;
+        //$products = $this->product->ofCategory($id)->get();
+        $products = $this->product->ofCategory($id)->paginate(6);
 
         return view('store.category', compact('categories', 'products'));
     }
