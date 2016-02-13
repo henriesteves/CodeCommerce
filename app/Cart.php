@@ -12,15 +12,29 @@ class Cart
         $this->items = [];
     }
 
-    public function add($id, $name, $price)
+    public function add($id, $name, $price, $image)
     {
-        $this->items + [
+        $this->items += [
             $id => [
                 'qtd' => isset($this->items[$id]['qtd']) ? $this->items[$id]['qtd']++ : 1,
                 'price' => $price,
-                'name' => $name
+                'name' => $name,
+                'image' => $image
             ]
         ];
+
+        return $this->items;
+    }
+
+    public function removeItem($id)
+    {
+        $this->items += [
+            $id => [
+                'qtd' => isset($this->items[$id]['qtd']) ? $this->items[$id]['qtd']-- : 1,
+            ]
+        ];
+
+        return $this->items;
     }
 
     public function remove($id)

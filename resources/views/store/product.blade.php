@@ -42,10 +42,10 @@
                     <img src="images/product-details/rating.png" alt="">
 								<span>
 									<span>R$ {{ number_format($product->price, 2, "," , ".") }}</span>
-									<button type="button" class="btn btn-fefault cart">
+									<a href="{{ route('store.cart.add', ['id' => $product->id]) }}" class="btn btn-fefault cart">
                                         <i class="fa fa-shopping-cart"></i>
                                         Adicionar ao Carrinho
-                                    </button>
+                                    </a>
 								</span>
                     @if(count($tags))
                         <p>Tags:

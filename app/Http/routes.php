@@ -15,7 +15,11 @@ Route::get('/', ['as' => 'store.index', 'uses' => 'StoreController@index']);
 Route::get('category/{id}', ['as' => 'store.category', 'uses' => 'StoreController@category']);
 Route::get('product/{id}', ['as' => 'store.product', 'uses' => 'StoreController@product']);
 Route::get('tag/{id}', ['as' => 'store.tag', 'uses' => 'StoreController@tag']);
+
 Route::get('cart', ['as' => 'store.cart', 'uses' => 'CartController@index']);
+Route::get('cart/add/{id}', ['as' => 'store.cart.add', 'uses' => 'CartController@add']);
+Route::get('cart/remove-item/{id}', ['as' => 'store.cart.remove-item', 'uses' => 'CartController@removeItem']);
+Route::get('cart/destroy/{id}', ['as' => 'store.cart.destroy', 'uses' => 'CartController@destroy']);
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
