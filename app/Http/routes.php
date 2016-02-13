@@ -15,6 +15,7 @@ Route::get('/', ['as' => 'store.index', 'uses' => 'StoreController@index']);
 Route::get('category/{id}', ['as' => 'store.category', 'uses' => 'StoreController@category']);
 Route::get('product/{id}', ['as' => 'store.product', 'uses' => 'StoreController@product']);
 Route::get('tag/{id}', ['as' => 'store.tag', 'uses' => 'StoreController@tag']);
+Route::get('cart', ['as' => 'store.cart', 'uses' => 'CartController@index']);
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
