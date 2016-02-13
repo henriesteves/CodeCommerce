@@ -54,13 +54,11 @@ class StoreController extends Controller
     {
         $categories = $this->category->all();
 
-        $category = $this->category->find($id);
-
         $product = $this->product->find($id);
 
         $tags = $product->tags;
 
-        return view('store.product', compact('categories', 'category', 'product', 'tags'));
+        return view('store.product', compact('categories', 'product', 'tags'));
     }
 
     // Página de tag

@@ -37,7 +37,7 @@
             <div class="col-sm-7">
                 <div class="product-information"><!--/product-information-->
                     <img src="images/product-details/new.jpg" class="newarrival" alt="">
-                    <h2>{{ $category->name . ' :: ' . $product->name }}</h2>
+                    <h2>{{ $product->category->name . ' :: ' . $product->name }}</h2>
                     <p>{{ $product->description }}</p>
                     <img src="images/product-details/rating.png" alt="">
 								<span>
@@ -47,11 +47,13 @@
                                         Adicionar ao Carrinho
                                     </button>
 								</span>
-                    <p>Tags:
-                    @foreach($tags as $tag)
-                        <a href="{{ route('store.tag', $tag->id) }}"><span class="label label-primary">{{ $tag->name }}</span></a>
-                    @endforeach
-                    </p>
+                    @if(count($tags))
+                        <p>Tags:
+                        @foreach($tags as $tag)
+                            <a href="{{ route('store.tag', $tag->id) }}"><span class="label label-primary">{{ $tag->name }}</span></a>
+                        @endforeach
+                        </p>
+                    @endif
                 </div><!--/product-information-->
             </div>
 
