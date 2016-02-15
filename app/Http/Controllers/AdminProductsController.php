@@ -19,6 +19,8 @@ class AdminProductsController extends Controller
 
     public function __construct(Product $productModel)
     {
+        //$this->middleware('auth');
+
         $this->productModel = $productModel;
     }
 
@@ -30,7 +32,10 @@ class AdminProductsController extends Controller
     public function index()
     {
         //$products = $this->productModel->all();
-        $products = $this->productModel->paginate(10);
+        //$products = $this->productModel->paginate(10);
+        // Eager Loading
+        $products = $this->productModel->with('category', 'images', 'tags')->paginate(10);
+
 
         return view('products.index', compact('products'));
     }

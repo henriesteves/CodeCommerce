@@ -32,7 +32,7 @@
                                 <p>Código: {{ $k }}</p>
                             </td>
                             <td class="cart_price">
-                                R$ {{ $item['price'] }}
+                                R$ {{ number_format($item['price'], 2, "," , ".") }}
                             </td>
 
                             <td class="cart_quantity">
@@ -44,7 +44,7 @@
                             </td>
 
                             <td class="cart_total">
-                                <p class="cart_total_price"> R$ {{ $item['price'] * $item['qtd'] }}</p>
+                                <p class="cart_total_price"> R$ {{ number_format($item['price'] * $item['qtd'], 2, "," , ".")  }}</p>
                             </td>
                             <td class="cart_delete">
                                 <a href="{{ route('store.cart.destroy', ['id' => $k]) }}" class="cart_quantity_delete"><i class="fa fa-times"></i></a>
@@ -60,9 +60,9 @@
                         <td colspan="6">
                             <div class="pull-right">
                                 <span style="margin-right: 100px">
-                                    TOTAL: R$ {{ $cart->getTotal() }}
+                                    TOTAL: R$ {{ number_format($cart->getTotal(), 2, "," , ".") }}
                                 </span>
-                                <a href="" class="btn btn-success">Fechar a compra</a>
+                                <a href="{{ route('store.checkout.place') }}" class="btn btn-success">Fechar a compra</a>
                             </div>
                         </td>
                     </tr>
