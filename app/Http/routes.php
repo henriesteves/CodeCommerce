@@ -24,7 +24,19 @@ Route::get('cart/add/{id}', ['as' => 'store.cart.add', 'uses' => 'CartController
 Route::get('cart/remove-item/{id}', ['as' => 'store.cart.remove-item', 'uses' => 'CartController@removeItem']);
 Route::get('cart/destroy/{id}', ['as' => 'store.cart.destroy', 'uses' => 'CartController@destroy']);
 
-Route::get('checkout/placeOrder', ['as' => 'store.checkout.place', 'uses' => 'CheckoutController@place']);
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('checkout/placeOrder', ['as' => 'store.checkout.place', 'uses' => 'CheckoutController@place']);
+
+    Route::get('account/orders', ['as' => 'store.account.orders', 'uses' => 'AccountController@orders']);
+
+});
+
+Route::get('evento', function() {
+    //\Illuminate\Support\Facades\Event::fire(new \CodeCommerce\Events\CheckoutEvent());
+    // mesmo que:
+    event(new \CodeCommerce\Events\CheckoutEvent());
+});
 
 Route::controllers([
     'auth' => 'Auth\AuthController',

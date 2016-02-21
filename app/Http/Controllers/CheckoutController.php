@@ -2,6 +2,8 @@
 
 namespace CodeCommerce\Http\Controllers;
 
+use CodeCommerce\Category;
+use CodeCommerce\Events\CheckoutEvent;
 use CodeCommerce\Order;
 use CodeCommerce\OrderItem;
 use Illuminate\Http\Request;
@@ -13,10 +15,10 @@ use Illuminate\Support\Facades\Session;
 
 class CheckoutController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//    }
 
     public function place(Order $orderModel, OrderItem $orderItem)
     {
@@ -26,6 +28,7 @@ class CheckoutController extends Controller
 
         $cart = Session::get('cart');
 
+        // Carrinho com pelo menos um item
         if($cart->getTotal() > 0) {
 
             $order = $orderModel->create(['user_id' => Auth::user()->id, 'total' => $cart->getTotal()]);
@@ -38,8 +41,21 @@ class CheckoutController extends Controller
             }
 
             //dd($order);
-            dd($order->items);
+            //dd($order->items);
+
+            $cart->clear();
+
+            event(new CheckoutEvent(Auth::user(), $order));
+
+            return view('store.checkout', ['order' => $order, 'cart' => $cart]);
 
         }
+
+        // Carrinho vazio
+
+        $categories = Category::all();
+
+        return view('store.checkout', ['cart' => 'empty', 'categories' => $categories]);
+
     }
 }

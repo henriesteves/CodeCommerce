@@ -54,9 +54,8 @@
                             @else
                                 <li><a href="#"> Olá {{ Auth::user()->name  }}!</a></li>
                             @endif
-                            <li><a href="#"><i class="fa fa-user"></i> Minha conta</a></li>
-                            <li><a href="http://codecommerce.dev/checkout"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                            <li><a href="http://codecommerce.dev/cart"><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
+                            <li><a href="{{ route('store.account.orders') }}"><i class="fa fa-user"></i> Minha conta</a></li>
+                            <li><a href="{{ route('store.cart') }}"><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
                             @if (Auth::guest())
                                 <li><a href="http://codecommerce.dev/auth/login"><i class="fa fa-lock"></i> Entrar</a></li>
                             @else
