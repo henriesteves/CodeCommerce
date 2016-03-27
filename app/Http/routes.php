@@ -74,6 +74,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth.admin'], function () {
         });
     });
 
+    Route::group(['prefix' => 'orders'], function () {
+        Route::get('/', ['as' => 'admin.orders', 'uses' => 'AdminOrdersController@index']);
+        Route::get('create', ['as' => 'admin.orders.create', 'uses' => 'AdminOrdersController@create']);
+        Route::post('store', ['as' => 'admin.orders.store', 'uses' => 'AdminOrdersController@store']);
+        Route::get('show/{id}', ['as' => 'admin.orders.show', 'uses' => 'AdminOrdersController@show']);
+        Route::get('edit/{id}', ['as' => 'admin.orders.edit', 'uses' => 'AdminOrdersController@edit']);
+        Route::put('update/{id}', ['as' => 'admin.orders.update', 'uses' => 'AdminOrdersController@update']);
+        Route::get('destroy/{id}', ['as' => 'admin.orders.destroy', 'uses' => 'AdminOrdersController@destroy']);
+    });
+
     //Route::get('categories', 'AdminCategoriesController@index');
     //Route::get('products', 'AdminProductsController@index');
 });

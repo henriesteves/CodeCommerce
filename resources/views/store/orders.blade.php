@@ -26,13 +26,30 @@
                         </ul>
                     </td>
                     <td>{{ $order->total }}</td>
-                    <td>{{ $order->status }}</td>
+                    <td>
+                        @if ( $order->status == 0)
+                            Pedido Realizado
+                        @elseif ( $order->status == 1)
+                            Pagamento Autorizado
+                        @elseif ( $order->status == 2)
+                            Emissão de Nota Fiscal
+                        @elseif ( $order->status == 3)
+                            Produto em Transporte
+                        @elseif ( $order->status == 4)
+                            Produto Entregue
+                        @elseif ( $order->status == 5)
+                            Cancelado
+                        @endif
+                    </td>
                 </tr>
 
             @endforeach
 
             </tbody>
         </table>
+
+        <h3>Endereço</h3>
+
 
     </div>
 
